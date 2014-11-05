@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block title %}Event Monitoring{% endblock %}
+
+{% block content %}
+
+    {% regroup config by host as host_list %}
+
+    {% for host in host_list %}
+
+        <h3>{{ host.grouper }}</h3>
+
+        <table border="1">
+        <tr>
+            <th>Event</th>
+            <th>Status</th>
+            <th>Result</th>
+            <th>Time</th>
+            <th>Fresh</th>
+        </tr>
+
+        {% for config in host.list %}
+        <tr>
+            <td>{{ config.event }}</td>
+            <td>{{ config.latest.status }}</td>
+            <td>{{ config.latest.description }}</td>
+            <td>{{ config.latest.timestamp }}</td>
+            <td>{{ config.is_fresh }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="5" class="text-center">None found</td>
+        </tr>
+        {% endfor %}
+        </table>
+
+    {% endfor %}
+{% endblock %}

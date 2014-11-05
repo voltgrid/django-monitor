@@ -1,0 +1,7 @@
+{% extends "notification/base.txt" %}
+
+{% block page_title %}{{ subject }}{% endblock %}
+
+{% block text_content %}
+Notification Alert
+{% endblock %}
