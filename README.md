@@ -25,3 +25,11 @@ To send a result to the app using the `requests` HTTP library:
             assert r.status_code == 201
         except requests.ConnectionError, e:
             print("Error: %s" % str(e))
+
+Using curl:
+
+    curl -i --user "username:password"   \
+         -H "Content-Type: application/json" \
+         -X POST \
+         -d '{"host": "myserver.example.com", "event": "Some Process", "status": "O", "description": "Success"}' \
+         http://localhost:8000/monitor/v1/result/
